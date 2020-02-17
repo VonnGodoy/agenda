@@ -1,3 +1,4 @@
+/*
 package br.gdtech.agenda.security;
 
 import org.springframework.security.core.Authentication;
@@ -22,4 +23,4 @@ public class JWTAuthenticationFilter extends GenericFilterBean {
 		filterChain.doFilter(request, response);
 	}
 
-}
+}*/

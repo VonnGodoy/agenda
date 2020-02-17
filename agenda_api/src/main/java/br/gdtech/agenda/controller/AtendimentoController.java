@@ -21,7 +21,7 @@ public class AtendimentoController {
 	private AtendimentoService service;
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public Optional<Atendimento>  findById(@PathParam("id") Integer id) {
+	public Optional<Atendimento>  findById(@PathParam("id") Long id) {
 		return service.findById(id);
 	}
 

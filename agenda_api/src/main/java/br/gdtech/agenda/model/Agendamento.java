@@ -13,17 +13,17 @@ public class Agendamento {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id_agendamento")
-	private Integer id;
+	private Long id;
 	
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="id_pessoa")
 	private Pessoa cliente;
 	
-	@Temporal(TemporalType.TIMESTAMP)
+	//@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="data_hora")
 	private LocalDate data;
 	
-	@Temporal(TemporalType.TIMESTAMP)
+	//@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="registro")
 	private LocalDate registro;
 	

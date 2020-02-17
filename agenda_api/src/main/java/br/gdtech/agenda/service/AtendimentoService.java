@@ -1,7 +1,7 @@
 package br.gdtech.agenda.service;
 
 import br.gdtech.agenda.model.Atendimento;
-import br.gdtech.agenda.repository.AtendimentoRepository;
+import br.gdtech.agenda.persistence.impl.AtendimentoRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,9 +14,9 @@ import java.util.Optional;
 public class AtendimentoService {
 
 	@Autowired
-	private AtendimentoRepository repository;
+	private AtendimentoRepositoryImpl repository;
 
-	public Optional<Atendimento> findById(Integer id) {
+	public Optional<Atendimento> findById(Long id) {
 		return repository.findById(id);
 	}
 
@@ -29,7 +29,7 @@ public class AtendimentoService {
 
 	}
 
-	protected void setRepository(AtendimentoRepository repository) {
+	protected void setRepository(AtendimentoRepositoryImpl repository) {
 		this.repository = repository;
 	}
 

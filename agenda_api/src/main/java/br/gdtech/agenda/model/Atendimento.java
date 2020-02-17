@@ -15,13 +15,13 @@ public class Atendimento {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_atendimento")
-	private Integer id;
+	private Long id;
 
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "id_agendamento")
 	private Agendamento agendamento;
 
-	@Temporal(TemporalType.TIMESTAMP)
+	//@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "data_hora")
 	private LocalDate data;
 

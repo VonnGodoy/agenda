@@ -22,7 +22,8 @@ public class PessoaController {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public Optional<Pessoa> findById(@PathParam("id") Integer id) {
-		return service.findById(id);
+
+		return service.findById(Long.valueOf(id));
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -30,7 +31,7 @@ public class PessoaController {
 		return service.save(pessoa);
 	}
 
-	@RequestMapping(value = "/filtro", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/filtro", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public List<Pessoa> findByFiltro(@RequestBody Pessoa pessoa) {
 		return service.listar(pessoa);
 	}

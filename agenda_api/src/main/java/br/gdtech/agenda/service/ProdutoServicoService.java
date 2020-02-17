@@ -1,7 +1,7 @@
 package br.gdtech.agenda.service;
 
 import br.gdtech.agenda.model.ProdutoServico;
-import br.gdtech.agenda.repository.ProdutoServicoRepository;
+import br.gdtech.agenda.persistence.impl.ProdutoServicoRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,9 +14,9 @@ import java.util.Optional;
 public class ProdutoServicoService {
 
 	@Autowired
-	private ProdutoServicoRepository repository;
+	private ProdutoServicoRepositoryImpl repository;
 
-	public Optional<ProdutoServico> findById(Integer id) {
+	public Optional<ProdutoServico> findById(Long id) {
 		return repository.findById(id);
 	}
 	
@@ -28,7 +28,7 @@ public class ProdutoServicoService {
 		return repository.listar(pds);
 	}
 
-	protected void setRepository(ProdutoServicoRepository repository) {
+	protected void setRepository(ProdutoServicoRepositoryImpl repository) {
 		this.repository = repository;
 	}
 }

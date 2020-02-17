@@ -1,7 +1,7 @@
 package br.gdtech.agenda.service;
 
 import br.gdtech.agenda.model.Pessoa;
-import br.gdtech.agenda.repository.PessoaRepository;
+import br.gdtech.agenda.persistence.impl.PessoaRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,9 +14,10 @@ import java.util.Optional;
 public class PessoaService {
 
 	@Autowired
-	private PessoaRepository repository;
+	private PessoaRepositoryImpl repository;
 
-	public Optional<Pessoa> findById(Integer id) {
+	public Optional<Pessoa> findById(Long id) {
+		id = 1l;
 		return repository.findById(id);
 	}
 	
@@ -28,7 +29,7 @@ public class PessoaService {
 		return repository.listar(pes);
 	}
 
-	protected void setRepository(PessoaRepository repository) {
+	protected void setRepository(PessoaRepositoryImpl repository) {
 		this.repository = repository;
 	}
 }

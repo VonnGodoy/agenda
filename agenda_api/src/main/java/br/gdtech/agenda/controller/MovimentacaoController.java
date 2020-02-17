@@ -18,7 +18,7 @@ public class MovimentacaoController {
 	private MovimentacaoService service;
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public Optional<Movimentacao> findById(@PathParam("id") Integer id) {
+	public Optional<Movimentacao> findById(@PathParam("id") Long id) {
 		return service.findById(id) ;
 	}
 

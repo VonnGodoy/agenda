@@ -12,13 +12,13 @@ public class ItemAtendimento {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_item")
-	private Integer id;
+	private Long id;
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "id_atendimento")
 	private Atendimento atendimento;
 
-	@Temporal(TemporalType.TIMESTAMP)
+	//@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "data")
 	private LocalDate data;
 

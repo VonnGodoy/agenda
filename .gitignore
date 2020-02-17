@@ -1,0 +1,6 @@
+*.project
+/agenda_api/WebContent
+/agenda_api/lib
+/agenda_api/.idea
+/agenda_api/*.springBeans
+/agenda_api/*.iml

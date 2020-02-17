@@ -1,7 +1,7 @@
 package br.gdtech.agenda.service;
 
 import br.gdtech.agenda.model.TipoMovimentacao;
-import br.gdtech.agenda.repository.TipoMovimentacaoRepository;
+import br.gdtech.agenda.persistence.impl.TipoMovimentacaoRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,9 +14,9 @@ import java.util.Optional;
 public class TipoMovimentacaoService {
 
 	@Autowired
-	private TipoMovimentacaoRepository repository;
+	private TipoMovimentacaoRepositoryImpl repository;
 
-	public Optional<TipoMovimentacao> findById(Integer id) {
+	public Optional<TipoMovimentacao> findById(Long id) {
 		return repository.findById(id);
 	}
 
@@ -28,7 +28,7 @@ public class TipoMovimentacaoService {
 		return repository.listar(tipo);
 	}
 
-	protected void setRepository(TipoMovimentacaoRepository repository) {
+	protected void setRepository(TipoMovimentacaoRepositoryImpl repository) {
 		this.repository = repository;
 	}
 }

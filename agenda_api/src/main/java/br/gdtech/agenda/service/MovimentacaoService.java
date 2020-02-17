@@ -1,7 +1,7 @@
 package br.gdtech.agenda.service;
 
 import br.gdtech.agenda.model.Movimentacao;
-import br.gdtech.agenda.repository.MovimentacaoRepository;
+import br.gdtech.agenda.persistence.impl.MovimentacaoRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,9 +14,9 @@ import java.util.Optional;
 public class MovimentacaoService {
 
 	@Autowired
-	private MovimentacaoRepository repository;
+	private MovimentacaoRepositoryImpl repository;
 
-	public Optional<Movimentacao> findById(Integer id) {
+	public Optional<Movimentacao> findById(Long id) {
 		return repository.findById(id);
 	}
 
@@ -29,7 +29,7 @@ public class MovimentacaoService {
 
 	}
 
-	protected void setRepository(MovimentacaoRepository repository) {
+	protected void setRepository(MovimentacaoRepositoryImpl repository) {
 		this.repository = repository;
 	}
 }

@@ -13,7 +13,7 @@ public class Pessoa {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_pessoa")
-	private Integer id;
+	private Long id;
 
 	@Column(name = "cpfCnpj", unique = true, nullable = false)
 	private String cpfCnpj;
@@ -34,11 +34,11 @@ public class Pessoa {
 	@Column(name = "perfil", nullable = false)
 	private PerfilEnum perfil;
 
-	@Temporal(TemporalType.TIMESTAMP)
+	//@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "dt_nascimento")
 	private LocalDate dtNascimento;
 
-	@Temporal(TemporalType.TIMESTAMP)
+//	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "dt_cadastro", nullable = false)
 	private LocalDate dtCadastro;
 

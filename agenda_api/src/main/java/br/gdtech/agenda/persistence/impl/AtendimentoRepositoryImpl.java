@@ -1,8 +1,10 @@
-package br.gdtech.agenda.repository;
+package br.gdtech.agenda.persistence.impl;
 
 import br.gdtech.agenda.enums.StatusAtendimentoEnum;
 import br.gdtech.agenda.enums.TipoPagamentoEnum;
 import br.gdtech.agenda.model.Atendimento;
+import br.gdtech.agenda.persistence.generic.RepositorioBase;
+import br.gdtech.agenda.persistence.repository.AtendimentoRepository;
 import org.jinq.jpa.JPAJinqStream;
 import org.springframework.stereotype.Repository;
 
@@ -11,13 +13,13 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public abstract class AtendimentoRepository extends RepositorioBase<Atendimento> {
+public class AtendimentoRepositoryImpl extends RepositorioBase<Atendimento, Long> implements AtendimentoRepository {
 
 	public List<Atendimento> listar(Atendimento filtro) {
 
-		JPAJinqStream<Atendimento> streams = stream();
+		JPAJinqStream<Atendimento> streams = stream(Atendimento.class);
 
-		Integer id = filtro.getId() != null ? filtro.getId() : null;
+		Long id = filtro.getId() != null ? filtro.getId() : null;
 		String doc = filtro.getAgendamento().getCliente() != null
 				&& !filtro.getAgendamento().getCliente().getCpfCnpj().isEmpty()
 						? filtro.getAgendamento().getCliente().getCpfCnpj()
@@ -43,11 +45,58 @@ public abstract class AtendimentoRepository extends RepositorioBase<Atendimento>
 		return streams.toList();
 	}
 
-	public Atendimento gravar(Atendimento at) {
-		return this.save(at);
+	@Override
+	public List<Atendimento> findAll() {
+		return null;
 	}
 
-	public Optional<Atendimento> buscarPorId(Integer id) {
-		return this.findById(id);
+	@Override
+	public Iterable<Atendimento> findAllById(Iterable<Long> iterable) {
+		return null;
+	}
+
+	@Override
+	public long count() {
+		return 0;
+	}
+
+	@Override
+	public void deleteById(Long aLong) {
+
+	}
+
+	@Override
+	public void delete(Atendimento atendimento) {
+
+	}
+
+	@Override
+	public void deleteAll(Iterable<? extends Atendimento> iterable) {
+
+	}
+
+	@Override
+	public void deleteAll() {
+
+	}
+
+	@Override
+	public <S extends Atendimento> S save(S s) {
+		return null;
+	}
+
+	@Override
+	public <S extends Atendimento> Iterable<S> saveAll(Iterable<S> iterable) {
+		return null;
+	}
+
+	@Override
+	public Optional<Atendimento> findById(Long id) {
+		return Optional.empty();
+	}
+
+	@Override
+	public boolean existsById(Long aLong) {
+		return false;
 	}
 }

@@ -1,21 +1,24 @@
-package br.gdtech.agenda.repository;
+package br.gdtech.agenda.persistence.impl;
 
 import br.gdtech.agenda.enums.StatusAtendimentoEnum;
 import br.gdtech.agenda.model.Agendamento;
+import br.gdtech.agenda.persistence.generic.RepositorioBase;
+import br.gdtech.agenda.persistence.repository.AgendamentoRepository;
 import org.jinq.jpa.JPAJinqStream;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
-public abstract class AgendamentoRepository extends RepositorioBase<Agendamento> {
+public class AgendamentoRepositoryImpl extends RepositorioBase<Agendamento, Long> implements AgendamentoRepository {
 
 	public List<Agendamento> listar(Agendamento filtro) {
 
-		JPAJinqStream<Agendamento> streams = stream();
+		JPAJinqStream<Agendamento> streams = stream(Agendamento.class);
 
-		Integer id = filtro.getId() != null ? filtro.getId() : null;
+		Long id = filtro.getId() != null ? filtro.getId() : null;
 		String doc = filtro.getCliente() != null && !filtro.getCliente().getCpfCnpj().isEmpty()
 				? filtro.getCliente().getCpfCnpj()
 				: null;
@@ -40,4 +43,58 @@ public abstract class AgendamentoRepository extends RepositorioBase<Agendamento>
 		return streams.toList();
 	}
 
+	@Override
+	public List<Agendamento> findAll() {
+		return null;
+	}
+
+	@Override
+	public Iterable<Agendamento> findAllById(Iterable<Long> iterable) {
+		return null;
+	}
+
+	@Override
+	public long count() {
+		return 0;
+	}
+
+	@Override
+	public void deleteById(Long aLong) {
+
+	}
+
+	@Override
+	public void delete(Agendamento agendamento) {
+
+	}
+
+	@Override
+	public void deleteAll(Iterable<? extends Agendamento> iterable) {
+
+	}
+
+	@Override
+	public void deleteAll() {
+
+	}
+
+	@Override
+	public <S extends Agendamento> S save(S s) {
+		return null;
+	}
+
+	@Override
+	public <S extends Agendamento> Iterable<S> saveAll(Iterable<S> iterable) {
+		return null;
+	}
+
+	@Override
+	public Optional<Agendamento> findById(Long id) {
+		return Optional.empty();
+	}
+
+	@Override
+	public boolean existsById(Long aLong) {
+		return false;
+	}
 }

@@ -13,7 +13,7 @@ public class Movimentacao {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_movimento")
-	private Integer id;
+	private Long id;
 
 	@Column(name = "vr_movimento")
 	private Double valor;
@@ -33,7 +33,7 @@ public class Movimentacao {
 	@Column(name = "motivo")
 	private String motivo;
 
-	@Temporal(TemporalType.TIMESTAMP)
+	//@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "data")
 	private LocalDate data;
 

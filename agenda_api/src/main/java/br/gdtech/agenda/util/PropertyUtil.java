@@ -1,6 +1,7 @@
 package br.gdtech.agenda.util;
 
 import org.apache.commons.beanutils.PropertyUtils;
+
 import java.lang.reflect.InvocationTargetException;
 
 public class PropertyUtil {

@@ -1,3 +1,4 @@
+/*
 package br.gdtech.agenda.security;
 
 import br.gdtech.agenda.model.Pessoa;
@@ -40,4 +41,4 @@ public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
         TokenAuthenticationService.addAuthentication(response, auth.getName());
     }
 
-}
+}*/
