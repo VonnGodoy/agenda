@@ -5,3 +5,7 @@
 /agenda_api/*.springBeans
 /agenda_api/*.iml
 /agenda_api/WEB-INF
+/agenda_api/.settings
+/agenda_api/bin
+/agenda_api/target
+/agenda_api/.classpath
