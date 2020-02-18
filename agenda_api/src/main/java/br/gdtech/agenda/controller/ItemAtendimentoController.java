@@ -36,7 +36,7 @@ public class ItemAtendimentoController {
 	}
 
 
-	@RequestMapping(value = "/filtro}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/filtro", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<ItemAtendimento> findByfiltro(@RequestBody ItemAtendimento item) {
 		return service.listar(item);
 	}

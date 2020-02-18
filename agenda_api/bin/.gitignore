@@ -1,0 +1,9 @@
+build/
+target/
+.settings/
+/idea/
+/WebContent/
+/bin/
+.project
+.springBeans
+.agenda_eletronica.iml
