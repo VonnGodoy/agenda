@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface AgendamentoRepository extends CrudRepository<Agendamento, Long> {
+public interface AgendamentoRepository extends CrudRepository<Agendamento, Integer> {
 
 	public List<Agendamento> findAll();
-	public Optional<Agendamento> findById(Long id);
+	public Optional<Agendamento> findById(Integer id);
 
 }

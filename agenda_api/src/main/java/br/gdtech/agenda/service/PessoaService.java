@@ -16,10 +16,7 @@ public class PessoaService {
 	@Autowired
 	private PessoaRepositoryImpl repository;
 
-	public Optional<Pessoa> findById(Long id) {
-		id = 1l;
-		return repository.findById(id);
-	}
+	public Optional<Pessoa> findById(Integer id) { return repository.findById(id); }
 	
 	public Pessoa save(Pessoa pes) {
 		return repository.save(pes);

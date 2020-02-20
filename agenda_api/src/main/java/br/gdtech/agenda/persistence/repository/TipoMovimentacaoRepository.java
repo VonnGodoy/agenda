@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface TipoMovimentacaoRepository extends CrudRepository<TipoMovimentacao, Long> {
+public interface TipoMovimentacaoRepository extends CrudRepository<TipoMovimentacao, Integer> {
 
 	public List<TipoMovimentacao> findAll();
-	public Optional<TipoMovimentacao> findById(Long id);
+	public Optional<TipoMovimentacao> findById(Integer id);
 
 }

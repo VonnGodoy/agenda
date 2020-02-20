@@ -5,6 +5,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @Entity(name = "pessoa")
@@ -13,7 +14,7 @@ public class Pessoa {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_pessoa")
-	private Long id;
+	private Integer id;
 
 	@Column(name = "cpfCnpj", unique = true, nullable = false)
 	private String cpfCnpj;
@@ -41,6 +42,10 @@ public class Pessoa {
 //	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "dt_cadastro", nullable = false)
 	private LocalDate dtCadastro;
+
+	@OneToMany
+	@JoinColumn(name = "id_pessoa")
+	private List<Contato> contatos;
 
 	@Transient
 	private String repetirSenha;

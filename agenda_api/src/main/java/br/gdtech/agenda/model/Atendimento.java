@@ -6,7 +6,6 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.List;
 
 @Data
 @Entity(name = "atendimento")
@@ -15,7 +14,7 @@ public class Atendimento {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_atendimento")
-	private Long id;
+	private Integer id;
 
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "id_agendamento")
@@ -34,11 +33,11 @@ public class Atendimento {
 	private StatusAtendimentoEnum status;
 
 	@Column(name = "verificadorCartao")
-	private Integer verificadorCartao;
+	private String verificadorCartao;
 
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@Column(name = "id_atendimento")
-	private List<ItemAtendimento> itensAtendimento;
+//	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//	@Column(name = "id_atendimento")
+//	private List<ItemAtendimento> itensAtendimento;
 
 	@Transient
 	private Double vrTotal;

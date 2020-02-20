@@ -10,13 +10,40 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class ProdutoServicoRepositoryImpl extends RepositorioBase<ProdutoServico, Long> implements ProdutoServicoRepository {
+public class ProdutoServicoRepositoryImpl extends RepositorioBase<ProdutoServico, Integer> implements ProdutoServicoRepository {
 
-	public List<ProdutoServico> listar(ProdutoServico filtro) {
 
+	public List<ProdutoServico> listar(ProdutoServico montarFiltros) {
+		JPAJinqStream<ProdutoServico> streams = montarFiltros(montarFiltros);
+
+		return streams.toList();
+	}
+
+	public Optional<ProdutoServico> findById(Integer id) {
+		JPAJinqStream<ProdutoServico> streams = stream(ProdutoServico.class);
+		streams = streams.where(a -> a.getId().equals(id));
+
+		return streams.findOne();
+	}
+
+	public boolean existsById(Integer id) {
+		JPAJinqStream<ProdutoServico> streams = stream(ProdutoServico.class);
+		streams = streams.where(a -> a.getId().equals(id));
+
+		return streams.count() > 0 ? true : false;
+	}
+
+	public long count(ProdutoServico filtro) {
+		JPAJinqStream<ProdutoServico> streams = montarFiltros(filtro);
+
+		return streams.count();
+	}
+
+
+	private JPAJinqStream<ProdutoServico> montarFiltros(ProdutoServico filtro){
 		JPAJinqStream<ProdutoServico> streams = stream(ProdutoServico.class);
 
-		Long id = filtro.getId() != null ? filtro.getId() : null;
+		Integer id = filtro.getId() != null ? filtro.getId() : null;
 		String nome = filtro.getServico() != null ? filtro.getServico() : null;
 		Boolean ativo = filtro.getAtivo() != null ? filtro.getAtivo() : null;
 
@@ -27,15 +54,7 @@ public class ProdutoServicoRepositoryImpl extends RepositorioBase<ProdutoServico
 		if (ativo != null)
 			streams = streams.where(a -> a.getAtivo().equals(ativo));
 
-		return streams.toList();
-	}
-
-	public ProdutoServico gravar(ProdutoServico ag) {
-		return this.save(ag);
-	}
-
-	public Optional<ProdutoServico> buscarPorId(Long id) {
-		return this.findById(id);
+		return streams;
 	}
 
 	@Override
@@ -44,7 +63,7 @@ public class ProdutoServicoRepositoryImpl extends RepositorioBase<ProdutoServico
 	}
 
 	@Override
-	public Iterable<ProdutoServico> findAllById(Iterable<Long> iterable) {
+	public Iterable<ProdutoServico> findAllById(Iterable<Integer> iterable) {
 		return null;
 	}
 
@@ -54,7 +73,7 @@ public class ProdutoServicoRepositoryImpl extends RepositorioBase<ProdutoServico
 	}
 
 	@Override
-	public void deleteById(Long aLong) {
+	public void deleteById(Integer integer) {
 
 	}
 
@@ -81,15 +100,5 @@ public class ProdutoServicoRepositoryImpl extends RepositorioBase<ProdutoServico
 	@Override
 	public <S extends ProdutoServico> Iterable<S> saveAll(Iterable<S> iterable) {
 		return null;
-	}
-
-	@Override
-	public Optional<ProdutoServico> findById(Long id) {
-		return Optional.empty();
-	}
-
-	@Override
-	public boolean existsById(Long aLong) {
-		return false;
 	}
 }

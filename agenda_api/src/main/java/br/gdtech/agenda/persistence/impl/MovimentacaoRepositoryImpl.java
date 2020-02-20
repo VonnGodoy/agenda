@@ -12,16 +12,41 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class MovimentacaoRepositoryImpl extends RepositorioBase<Movimentacao, Long> implements MovimentacaoRepository {
+public class MovimentacaoRepositoryImpl extends RepositorioBase<Movimentacao, Integer> implements MovimentacaoRepository {
 
 	public List<Movimentacao> listar(Movimentacao filtro) {
+		JPAJinqStream<Movimentacao> streams = montarFiltros(filtro);
 
+		return streams.toList();
+	}
+
+	public Optional<Movimentacao> findById(Integer id) {
+		JPAJinqStream<Movimentacao> streams = stream(Movimentacao.class);
+		streams = streams.where(a -> a.getId().equals(id));
+
+		return streams.findOne();
+	}
+
+	public boolean existsById(Integer id) {
+		JPAJinqStream<Movimentacao> streams = stream(Movimentacao.class);
+		streams = streams.where(a -> a.getId().equals(id));
+
+		return streams.count() > 0 ? true : false;
+	}
+
+	public long count(Movimentacao filtro) {
+		JPAJinqStream<Movimentacao> streams = montarFiltros(filtro);
+
+		return streams.count();
+	}
+
+	private JPAJinqStream<Movimentacao> montarFiltros(Movimentacao filtro){
 		JPAJinqStream<Movimentacao> streams = stream(Movimentacao.class);
 
-		Long id = filtro.getId() != null ? filtro.getId() : null;
-		Long tpMovimentoId = filtro.getTpMovimento() != null ? filtro.getTpMovimento().getId() : null;
+		Integer id = filtro.getId() != null ? filtro.getId() : null;
+		Integer tpMovimentoId = filtro.getTpMovimento() != null ? filtro.getTpMovimento().getId() : null;
 		TipoPagamentoEnum tpPagamento = filtro.getTpPagamento() != null ? filtro.getTpPagamento() : null;
-		Long usuarioId = filtro.getUsuario() != null ? filtro.getUsuario().getId() : null;
+		Integer usuarioId = filtro.getUsuario() != null ? filtro.getUsuario().getId() : null;
 		LocalDate dataInicio = filtro.getDataInicio() != null ? filtro.getDataInicio() : null;
 		LocalDate dataFim = filtro.getDataFim() != null ? filtro.getDataFim() : null;
 
@@ -38,7 +63,7 @@ public class MovimentacaoRepositoryImpl extends RepositorioBase<Movimentacao, Lo
 		if (dataInicio != null && dataFim != null)
 			streams = streams.where(a -> a.getData().isAfter(dataInicio) && a.getData().isBefore(dataFim));
 
-		return streams.toList();
+		return streams;
 	}
 
 	@Override
@@ -47,7 +72,7 @@ public class MovimentacaoRepositoryImpl extends RepositorioBase<Movimentacao, Lo
 	}
 
 	@Override
-	public Iterable<Movimentacao> findAllById(Iterable<Long> iterable) {
+	public Iterable<Movimentacao> findAllById(Iterable<Integer> iterable) {
 		return null;
 	}
 
@@ -57,7 +82,7 @@ public class MovimentacaoRepositoryImpl extends RepositorioBase<Movimentacao, Lo
 	}
 
 	@Override
-	public void deleteById(Long aLong) {
+	public void deleteById(Integer integer) {
 
 	}
 
@@ -84,15 +109,5 @@ public class MovimentacaoRepositoryImpl extends RepositorioBase<Movimentacao, Lo
 	@Override
 	public <S extends Movimentacao> Iterable<S> saveAll(Iterable<S> iterable) {
 		return null;
-	}
-
-	@Override
-	public Optional<Movimentacao> findById(Long id) {
-		return Optional.empty();
-	}
-
-	@Override
-	public boolean existsById(Long aLong) {
-		return false;
 	}
 }

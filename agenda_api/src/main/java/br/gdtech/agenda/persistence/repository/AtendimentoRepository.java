@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface AtendimentoRepository extends CrudRepository<Atendimento, Long> {
+public interface AtendimentoRepository extends CrudRepository<Atendimento, Integer> {
 
 	public List<Atendimento> findAll();
-	public Optional<Atendimento> findById(Long id);
+	public Optional<Atendimento> findById(Integer id);
 
 }

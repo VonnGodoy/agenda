@@ -10,13 +10,39 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class TipoMovimentacaoRepositoryImpl extends RepositorioBase<TipoMovimentacao, Long> implements TipoMovimentacaoRepository {
+public class TipoMovimentacaoRepositoryImpl extends RepositorioBase<TipoMovimentacao, Integer> implements TipoMovimentacaoRepository {
 
 	public List<TipoMovimentacao> listar(TipoMovimentacao filtro) {
+		JPAJinqStream<TipoMovimentacao> streams = montarFiltros(filtro);
 
+		return streams.toList();
+	}
+
+	public Optional<TipoMovimentacao> findById(Integer id) {
+		JPAJinqStream<TipoMovimentacao> streams = stream(TipoMovimentacao.class);
+		streams = streams.where(a -> a.getId().equals(id));
+
+		return streams.findOne();
+	}
+
+	public boolean existsById(Integer id) {
+		JPAJinqStream<TipoMovimentacao> streams = stream(TipoMovimentacao.class);
+		streams = streams.where(a -> a.getId().equals(id));
+
+		return streams.count() > 0 ? true : false;
+	}
+
+	public long count(TipoMovimentacao filtro) {
+		JPAJinqStream<TipoMovimentacao> streams = montarFiltros(filtro);
+
+		return streams.count();
+	}
+
+
+	private JPAJinqStream<TipoMovimentacao> montarFiltros(TipoMovimentacao filtro){
 		JPAJinqStream<TipoMovimentacao> streams = stream(TipoMovimentacao.class);
 
-		Long id = filtro.getId() != null ? filtro.getId() : null;
+		Integer id = filtro.getId() != null ? filtro.getId() : null;
 		String nome = filtro.getTipo() != null ? filtro.getTipo() : null;
 		Boolean ativo = filtro.getAtivo() != null ? filtro.getAtivo() : null;
 
@@ -27,16 +53,15 @@ public class TipoMovimentacaoRepositoryImpl extends RepositorioBase<TipoMoviment
 		if (ativo != null)
 			streams = streams.where(a -> a.getAtivo().equals(ativo));
 
-		return streams.toList();
+		return streams;
 	}
-
 	@Override
 	public List<TipoMovimentacao> findAll() {
 		return null;
 	}
 
 	@Override
-	public Iterable<TipoMovimentacao> findAllById(Iterable<Long> iterable) {
+	public Iterable<TipoMovimentacao> findAllById(Iterable<Integer> iterable) {
 		return null;
 	}
 
@@ -46,7 +71,7 @@ public class TipoMovimentacaoRepositoryImpl extends RepositorioBase<TipoMoviment
 	}
 
 	@Override
-	public void deleteById(Long aLong) {
+	public void deleteById(Integer integer) {
 
 	}
 
@@ -75,13 +100,4 @@ public class TipoMovimentacaoRepositoryImpl extends RepositorioBase<TipoMoviment
 		return null;
 	}
 
-	@Override
-	public Optional<TipoMovimentacao> findById(Long id) {
-		return Optional.empty();
-	}
-
-	@Override
-	public boolean existsById(Long aLong) {
-		return false;
-	}
 }

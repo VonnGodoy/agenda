@@ -16,7 +16,7 @@ public class ItemAtendimentoService {
 	@Autowired
 	private ItemAtendimentoRepositoryImpl repository;
 
-	public Optional<ItemAtendimento> findById(Long id) {
+	public Optional<ItemAtendimento> findById(Integer id) {
 		return repository.findById(id);
 	}
 

@@ -12,19 +12,43 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class AgendamentoRepositoryImpl extends RepositorioBase<Agendamento, Long> implements AgendamentoRepository {
+public class AgendamentoRepositoryImpl extends RepositorioBase<Agendamento, Integer> implements AgendamentoRepository {
 
 	public List<Agendamento> listar(Agendamento filtro) {
+		JPAJinqStream<Agendamento> streams = montarFiltros(filtro);
 
+		return streams.toList();
+	}
+
+	public Optional<Agendamento> findById(Integer id) {
+		JPAJinqStream<Agendamento> streams = stream(Agendamento.class);
+		streams = streams.where(a -> a.getId().equals(id));
+
+		return streams.findOne();
+	}
+
+	public boolean existsById(Integer id) {
+		JPAJinqStream<Agendamento> streams = stream(Agendamento.class);
+		streams = streams.where(a -> a.getId().equals(id));
+
+		return streams.count() > 0 ? true : false;
+	}
+
+	public long count(Agendamento filtro) {
+		JPAJinqStream<Agendamento> streams = montarFiltros(filtro);
+
+		return streams.count();
+	}
+
+	private JPAJinqStream<Agendamento> montarFiltros(Agendamento filtro){
 		JPAJinqStream<Agendamento> streams = stream(Agendamento.class);
 
-		Long id = filtro.getId() != null ? filtro.getId() : null;
+		Integer id = filtro.getId() != null ? filtro.getId() : null;
 		String doc = filtro.getCliente() != null && !filtro.getCliente().getCpfCnpj().isEmpty()
 				? filtro.getCliente().getCpfCnpj()
 				: null;
 		LocalDate dataInicio = filtro.getDataInicio() != null ? filtro.getDataInicio() : null;
 		LocalDate dataFim = filtro.getDataFim() != null ? filtro.getDataFim() : null;
-		LocalDate registro = filtro.getRegistro() != null ? filtro.getRegistro() : null;
 		StatusAtendimentoEnum status = filtro.getStatus() != null ? filtro.getStatus() : null;
 
 		if (id != null)
@@ -35,12 +59,10 @@ public class AgendamentoRepositoryImpl extends RepositorioBase<Agendamento, Long
 			streams = streams.where(a -> a.getData().isEqual(dataInicio));
 		if (dataInicio != null && dataFim != null)
 			streams = streams.where(a -> a.getData().isAfter(dataInicio) && a.getData().isBefore(dataFim));
-		if (registro != null)
-			streams = streams.where(a -> a.getRegistro().equals(registro));
 		if (status != null)
 			streams = streams.where(a -> a.getStatus().equals(status));
 
-		return streams.toList();
+		return streams;
 	}
 
 	@Override
@@ -49,7 +71,7 @@ public class AgendamentoRepositoryImpl extends RepositorioBase<Agendamento, Long
 	}
 
 	@Override
-	public Iterable<Agendamento> findAllById(Iterable<Long> iterable) {
+	public Iterable<Agendamento> findAllById(Iterable<Integer> iterable) {
 		return null;
 	}
 
@@ -59,7 +81,7 @@ public class AgendamentoRepositoryImpl extends RepositorioBase<Agendamento, Long
 	}
 
 	@Override
-	public void deleteById(Long aLong) {
+	public void deleteById(Integer integer) {
 
 	}
 
@@ -88,13 +110,4 @@ public class AgendamentoRepositoryImpl extends RepositorioBase<Agendamento, Long
 		return null;
 	}
 
-	@Override
-	public Optional<Agendamento> findById(Long id) {
-		return Optional.empty();
-	}
-
-	@Override
-	public boolean existsById(Long aLong) {
-		return false;
-	}
 }

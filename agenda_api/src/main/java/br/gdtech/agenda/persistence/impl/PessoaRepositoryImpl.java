@@ -11,13 +11,38 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class PessoaRepositoryImpl extends RepositorioBase<Pessoa, Long> implements PessoaRepository {
+public class PessoaRepositoryImpl extends RepositorioBase<Pessoa, Integer> implements PessoaRepository {
 
-	public List<Pessoa> listar(Pessoa filtro) {
+	public List<Pessoa> listar(Pessoa montarFiltros) {
+		JPAJinqStream<Pessoa> streams = montarFiltros(montarFiltros);
 
+		return streams.toList();
+	}
+
+	public Optional<Pessoa> findById(Integer id) {
+		JPAJinqStream<Pessoa> streams = stream(Pessoa.class);
+		streams = streams.where(a -> a.getId().equals(id));
+
+		return streams.findOne();
+	}
+
+	public boolean existsById(Integer id) {
+		JPAJinqStream<Pessoa> streams = stream(Pessoa.class);
+		streams = streams.where(a -> a.getId().equals(id));
+
+		return streams.count() > 0 ? true : false;
+	}
+
+	public long count(Pessoa filtro) {
+		JPAJinqStream<Pessoa> streams = montarFiltros(filtro);
+
+		return streams.count();
+	}
+
+	private JPAJinqStream<Pessoa> montarFiltros(Pessoa filtro){
 		JPAJinqStream<Pessoa> streams = stream(Pessoa.class);
 
-		Long id = filtro.getId() != null ? filtro.getId() : null;
+		Integer id = filtro.getId() != null ? filtro.getId() : null;
 		String nome = filtro.getNome() != null ? filtro.getNome() : null;
 		String cpfCnpj = filtro.getCpfCnpj() != null ? filtro.getCpfCnpj() : null;
 		PerfilEnum perfil = filtro.getPerfil() != null ? filtro.getPerfil() : null;
@@ -34,7 +59,7 @@ public class PessoaRepositoryImpl extends RepositorioBase<Pessoa, Long> implemen
 		if (mesNascimento != null)
 			streams = streams.where(a -> a.getDtNascimento().getDayOfMonth() == mesNascimento);
 
-		return streams.toList();
+		return streams;
 	}
 
 	@Override
@@ -43,7 +68,7 @@ public class PessoaRepositoryImpl extends RepositorioBase<Pessoa, Long> implemen
 	}
 
 	@Override
-	public Iterable<Pessoa> findAllById(Iterable<Long> iterable) {
+	public Iterable<Pessoa> findAllById(Iterable<Integer> iterable) {
 		return null;
 	}
 
@@ -53,7 +78,7 @@ public class PessoaRepositoryImpl extends RepositorioBase<Pessoa, Long> implemen
 	}
 
 	@Override
-	public void deleteById(Long aLong) {
+	public void deleteById(Integer integer) {
 
 	}
 
@@ -80,15 +105,5 @@ public class PessoaRepositoryImpl extends RepositorioBase<Pessoa, Long> implemen
 	@Override
 	public <S extends Pessoa> Iterable<S> saveAll(Iterable<S> iterable) {
 		return null;
-	}
-
-	@Override
-	public Optional<Pessoa> findById(Long id) {
-		return Optional.empty();
-	}
-
-	@Override
-	public boolean existsById(Long aLong) {
-		return false;
 	}
 }

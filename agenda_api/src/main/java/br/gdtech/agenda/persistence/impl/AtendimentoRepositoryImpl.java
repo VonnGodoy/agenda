@@ -13,17 +13,42 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class AtendimentoRepositoryImpl extends RepositorioBase<Atendimento, Long> implements AtendimentoRepository {
+public class AtendimentoRepositoryImpl extends RepositorioBase<Atendimento, Integer> implements AtendimentoRepository {
 
 	public List<Atendimento> listar(Atendimento filtro) {
+		JPAJinqStream<Atendimento> streams = montarFiltros(filtro);
 
+		return streams.toList();
+	}
+
+	public long count(Atendimento filtro) {
+		JPAJinqStream<Atendimento> streams = montarFiltros(filtro);
+
+		return streams.count();
+	}
+
+	public Optional<Atendimento> findById(Integer id) {
+		JPAJinqStream<Atendimento> streams = stream(Atendimento.class);
+		streams = streams.where(a -> a.getId().equals(id));
+
+		return streams.findOne();
+	}
+
+	public boolean existsById(Integer id) {
+		JPAJinqStream<Atendimento> streams = stream(Atendimento.class);
+		streams = streams.where(a -> a.getId().equals(id));
+
+		return streams.count() > 0 ? true : false;
+	}
+
+	private JPAJinqStream<Atendimento> montarFiltros(Atendimento filtro){
 		JPAJinqStream<Atendimento> streams = stream(Atendimento.class);
 
-		Long id = filtro.getId() != null ? filtro.getId() : null;
+		Integer id = filtro.getId() != null ? filtro.getId() : null;
 		String doc = filtro.getAgendamento().getCliente() != null
 				&& !filtro.getAgendamento().getCliente().getCpfCnpj().isEmpty()
-						? filtro.getAgendamento().getCliente().getCpfCnpj()
-						: null;
+				? filtro.getAgendamento().getCliente().getCpfCnpj()
+				: null;
 		LocalDate dataInicio = filtro.getDataInicio() != null ? filtro.getDataInicio() : null;
 		LocalDate dataFim = filtro.getDataFim() != null ? filtro.getDataFim() : null;
 		TipoPagamentoEnum tipoPagamento = filtro.getTpPagamento() != null ? filtro.getTpPagamento() : null;
@@ -42,7 +67,7 @@ public class AtendimentoRepositoryImpl extends RepositorioBase<Atendimento, Long
 		if (status != null)
 			streams = streams.where(a -> a.getStatus().equals(status));
 
-		return streams.toList();
+		return streams;
 	}
 
 	@Override
@@ -51,7 +76,7 @@ public class AtendimentoRepositoryImpl extends RepositorioBase<Atendimento, Long
 	}
 
 	@Override
-	public Iterable<Atendimento> findAllById(Iterable<Long> iterable) {
+	public Iterable<Atendimento> findAllById(Iterable<Integer> iterable) {
 		return null;
 	}
 
@@ -61,7 +86,7 @@ public class AtendimentoRepositoryImpl extends RepositorioBase<Atendimento, Long
 	}
 
 	@Override
-	public void deleteById(Long aLong) {
+	public void deleteById(Integer integer) {
 
 	}
 
@@ -88,15 +113,5 @@ public class AtendimentoRepositoryImpl extends RepositorioBase<Atendimento, Long
 	@Override
 	public <S extends Atendimento> Iterable<S> saveAll(Iterable<S> iterable) {
 		return null;
-	}
-
-	@Override
-	public Optional<Atendimento> findById(Long id) {
-		return Optional.empty();
-	}
-
-	@Override
-	public boolean existsById(Long aLong) {
-		return false;
 	}
 }

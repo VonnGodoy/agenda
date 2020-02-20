@@ -21,7 +21,7 @@ public class ItemAtendimentoController {
 	private ItemAtendimentoService service;
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public Optional<ItemAtendimento> findById(@PathParam("id") Long id) {
+	public Optional<ItemAtendimento> findById(@PathParam("id") Integer id) {
 		return service.findById(id);
 	}
 
@@ -34,7 +34,6 @@ public class ItemAtendimentoController {
 	public void delete(@RequestBody ItemAtendimento item) {
 		service.delete(item);
 	}
-
 
 	@RequestMapping(value = "/filtro", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<ItemAtendimento> findByfiltro(@RequestBody ItemAtendimento item) {

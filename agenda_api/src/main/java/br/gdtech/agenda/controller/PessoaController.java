@@ -21,10 +21,7 @@ public class PessoaController {
 	private PessoaService service;
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public Optional<Pessoa> findById(@PathParam("id") Integer id) {
-
-		return service.findById(Long.valueOf(id));
-	}
+	public Optional<Pessoa> findById(@PathParam("id") Integer id) { return service.findById(id); }
 
 	@RequestMapping(value = "/", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public Pessoa save(@RequestBody Pessoa pessoa) {

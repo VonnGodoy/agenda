@@ -16,7 +16,7 @@ public class MovimentacaoService {
 	@Autowired
 	private MovimentacaoRepositoryImpl repository;
 
-	public Optional<Movimentacao> findById(Long id) {
+	public Optional<Movimentacao> findById(Integer id) {
 		return repository.findById(id);
 	}
 
@@ -24,10 +24,7 @@ public class MovimentacaoService {
 		return repository.save(movimentacao);
 	}
 
-	public List<Movimentacao> listar(Movimentacao mov) {
-		return repository.listar(mov);
-
-	}
+	public List<Movimentacao> listar(Movimentacao mov) { return repository.listar(mov); }
 
 	protected void setRepository(MovimentacaoRepositoryImpl repository) {
 		this.repository = repository;

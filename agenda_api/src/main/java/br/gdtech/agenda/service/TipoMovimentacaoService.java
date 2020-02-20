@@ -16,7 +16,7 @@ public class TipoMovimentacaoService {
 	@Autowired
 	private TipoMovimentacaoRepositoryImpl repository;
 
-	public Optional<TipoMovimentacao> findById(Long id) {
+	public Optional<TipoMovimentacao> findById(Integer id) {
 		return repository.findById(id);
 	}
 

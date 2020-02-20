@@ -1,8 +1,8 @@
-package br.gdtech.agenda.security;
+//package br.gdtech.agenda.security;
 
 //@Configuration
 //@EnableWebSecurity
-public class WebSecurityConfig {//extends WebSecurityConfigurerAdapter {
+//public class WebSecurityConfig {//extends WebSecurityConfigurerAdapter {
 
 //    @Override
 //    protected void configure(HttpSecurity httpSecurity) throws Exception {
@@ -21,4 +21,4 @@ public class WebSecurityConfig {//extends WebSecurityConfigurerAdapter {
 //        // cria uma conta default
 //        auth.inMemoryAuthentication().withUser("admin").password("password").roles("ADMIN");
 //    }
-}
+//}

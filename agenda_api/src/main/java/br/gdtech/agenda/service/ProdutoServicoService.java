@@ -16,7 +16,7 @@ public class ProdutoServicoService {
 	@Autowired
 	private ProdutoServicoRepositoryImpl repository;
 
-	public Optional<ProdutoServico> findById(Long id) {
+	public Optional<ProdutoServico> findById(Integer id) {
 		return repository.findById(id);
 	}
 	

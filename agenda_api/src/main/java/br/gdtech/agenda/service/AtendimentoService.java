@@ -16,7 +16,7 @@ public class AtendimentoService {
 	@Autowired
 	private AtendimentoRepositoryImpl repository;
 
-	public Optional<Atendimento> findById(Long id) {
+	public Optional<Atendimento> findById(Integer id) {
 		return repository.findById(id);
 	}
 
@@ -24,10 +24,7 @@ public class AtendimentoService {
 		return repository.save(atendimento);
 	}
 
-	public List<Atendimento> listar(Atendimento at) {
-		return repository.listar(at);
-
-	}
+	public List<Atendimento> listar(Atendimento at) { return repository.listar(at); }
 
 	protected void setRepository(AtendimentoRepositoryImpl repository) {
 		this.repository = repository;

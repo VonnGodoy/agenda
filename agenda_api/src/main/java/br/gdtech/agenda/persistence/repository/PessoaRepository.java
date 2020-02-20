@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface PessoaRepository extends CrudRepository<Pessoa, Long> {
+public interface PessoaRepository extends CrudRepository<Pessoa, Integer> {
 
 	public List<Pessoa> findAll();
-	public Optional<Pessoa> findById(Long id);
+	public Optional<Pessoa> findById(Integer id);
 }

@@ -18,7 +18,7 @@ public class MovimentacaoController {
 	private MovimentacaoService service;
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public Optional<Movimentacao> findById(@PathParam("id") Long id) {
+	public Optional<Movimentacao> findById(@PathParam("id") Integer id) {
 		return service.findById(id) ;
 	}
 
@@ -28,9 +28,6 @@ public class MovimentacaoController {
 	}
 
 	@RequestMapping(value = "/filtro", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Movimentacao> filtro(@RequestBody Movimentacao mov) {
-		return service.listar(mov);
-
-	}
+	public List<Movimentacao> filtro(@RequestBody Movimentacao mov) { return service.listar(mov); }
 
 }

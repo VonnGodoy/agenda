@@ -13,7 +13,7 @@ public class Movimentacao {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_movimento")
-	private Long id;
+	private Integer id;
 
 	@Column(name = "vr_movimento")
 	private Double valor;

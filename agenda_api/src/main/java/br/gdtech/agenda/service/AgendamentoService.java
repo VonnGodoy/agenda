@@ -16,18 +16,13 @@ public class AgendamentoService {
 	@Autowired
 	private AgendamentoRepositoryImpl repository;
 
-	public Optional<Agendamento> findById(Long id) {
-		return repository.findById(id);
-	}
+	public Optional<Agendamento> findById(Integer id) { return repository.findById(id); }
 
 	public Agendamento save(Agendamento agenda) {
 		return repository.save(agenda);
 	}
 
-	public List<Agendamento> listar(Agendamento at) {
-		return repository.listar(at);
-
-	}
+	public List<Agendamento> listar(Agendamento at) { return repository.listar(at); }
 
 	protected void setRepository(AgendamentoRepositoryImpl repository) {
 		this.repository = repository;

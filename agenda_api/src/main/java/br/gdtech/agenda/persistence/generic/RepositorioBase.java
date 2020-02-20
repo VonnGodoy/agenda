@@ -2,19 +2,20 @@ package br.gdtech.agenda.persistence.generic;
 
 import org.jinq.jpa.JPAJinqStream;
 import org.jinq.jpa.JinqJPAStreamProvider;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Import;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+@Import(JinqJPAStreamProvider.class)
 public abstract class RepositorioBase<T, U> {
 
-	//@Autowired
+	@Autowired
 	private JinqJPAStreamProvider jinqDataProvider;
 
 	@PersistenceContext
 	private EntityManager entityManager;
-
-//	protected abstract Class<T> entityType();
 
 	public JPAJinqStream<T> stream(Class<T> t) {
 		return streamOf(t);
