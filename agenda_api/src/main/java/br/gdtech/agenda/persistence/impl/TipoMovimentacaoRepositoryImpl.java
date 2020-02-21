@@ -47,9 +47,9 @@ public class TipoMovimentacaoRepositoryImpl extends RepositorioBase<TipoMoviment
 		Boolean ativo = filtro.getAtivo() != null ? filtro.getAtivo() : null;
 
 		if (id != null)
-			streams = streams.where(a -> a.getId().equals(id));
+			streams = streams.where(a -> a.getId() == id);
 		if (nome != null)
-			streams = streams.where(a -> a.getTipo().equals(nome));
+			streams = streams.where(a -> a.getTipo().contains(nome));
 		if (ativo != null)
 			streams = streams.where(a -> a.getAtivo().equals(ativo));
 

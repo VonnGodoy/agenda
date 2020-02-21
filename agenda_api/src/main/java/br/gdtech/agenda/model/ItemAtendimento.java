@@ -28,6 +28,9 @@ public class ItemAtendimento {
 	@Column(name = "desconto")
 	private Double desconto;
 
+	@Column(name = "valor")
+	private Double valor;
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_autorizacao")
 	private Pessoa autorizacao;

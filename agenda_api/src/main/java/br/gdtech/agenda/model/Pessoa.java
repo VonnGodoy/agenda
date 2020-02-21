@@ -16,7 +16,7 @@ public class Pessoa {
 	@Column(name = "id_pessoa")
 	private Integer id;
 
-	@Column(name = "cpfCnpj", unique = true, nullable = false)
+	@Column(name = "cpf_cnpj", unique = true, nullable = false)
 	private String cpfCnpj;
 
 	@Column(name = "nome", nullable = false)

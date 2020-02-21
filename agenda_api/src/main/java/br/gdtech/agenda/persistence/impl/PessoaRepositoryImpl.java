@@ -51,7 +51,7 @@ public class PessoaRepositoryImpl extends RepositorioBase<Pessoa, Integer> imple
 		if (id != null)
 			streams = streams.where(a -> a.getId() == id);
 		if (nome != null)
-			streams = streams.where(a -> a.getNome().equals(nome));
+			streams = streams.where(a -> a.getNome().contains(nome));
 		if (cpfCnpj != null)
 			streams = streams.where(a -> a.getCpfCnpj().equals(cpfCnpj));
 		if (perfil != null)

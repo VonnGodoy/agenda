@@ -51,13 +51,13 @@ public class MovimentacaoRepositoryImpl extends RepositorioBase<Movimentacao, In
 		LocalDate dataFim = filtro.getDataFim() != null ? filtro.getDataFim() : null;
 
 		if (id != null)
-			streams = streams.where(a -> a.getId().equals(id));
+			streams = streams.where(a -> a.getId() == id);
 		if (tpMovimentoId != null)
-			streams = streams.where(a -> a.getTpMovimento().getId().equals(tpMovimentoId));
+			streams = streams.where(a -> a.getTpMovimento().getId() == tpMovimentoId);
 		if (tpPagamento != null)
 			streams = streams.where(a -> a.getTpPagamento().equals(tpPagamento));
 		if (usuarioId != null)
-			streams = streams.where(a -> a.getUsuario().getId().equals(usuarioId));
+			streams = streams.where(a -> a.getUsuario().getId() == usuarioId);
 		if (dataInicio != null && dataFim == null)
 			streams = streams.where(a -> a.getData().isEqual(dataInicio));
 		if (dataInicio != null && dataFim != null)

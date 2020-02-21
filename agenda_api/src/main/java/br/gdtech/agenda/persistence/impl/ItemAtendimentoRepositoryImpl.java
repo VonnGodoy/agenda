@@ -48,15 +48,15 @@ public class ItemAtendimentoRepositoryImpl extends RepositorioBase<ItemAtendimen
 		Integer autorizadorId = filtro.getAutorizacao() != null ? filtro.getAutorizacao().getId() : null;
 
 		if (id != null)
-			streams = streams.where(a -> a.getId().equals(id));
+			streams = streams.where(a -> a.getId() == id);
 		if (idAtendimento != null)
-			streams = streams.where(a -> a.getAtendimento().getId().equals(idAtendimento));
+			streams = streams.where(a -> a.getAtendimento().getId() == idAtendimento);
 		if (funcionarioId != null)
-			streams = streams.where(a -> a.getFuncionario().getId().equals(funcionarioId));
+			streams = streams.where(a -> a.getFuncionario().getId() == funcionarioId);
 		if (servicoId != null)
-			streams = streams.where(a -> a.getServico().getId().equals(servicoId));
+			streams = streams.where(a -> a.getServico().getId() == servicoId);
 		if (autorizadorId != null)
-			streams = streams.where(a -> a.getAutorizacao().getId().equals(autorizadorId));
+			streams = streams.where(a -> a.getAutorizacao().getId() == autorizadorId);
 
 		return streams;
 	}

@@ -55,7 +55,7 @@ public class AtendimentoRepositoryImpl extends RepositorioBase<Atendimento, Inte
 		StatusAtendimentoEnum status = filtro.getStatus() != null ? filtro.getStatus() : null;
 
 		if (id != null)
-			streams = streams.where(a -> a.getId().equals(id));
+			streams = streams.where(a -> a.getId() == id);
 		if (doc != null)
 			streams = streams.where(a -> a.getAgendamento().getCliente().getCpfCnpj().equals(doc));
 		if (dataInicio != null && dataFim == null)
