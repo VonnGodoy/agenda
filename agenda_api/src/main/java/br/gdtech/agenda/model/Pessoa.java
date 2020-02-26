@@ -35,11 +35,9 @@ public class Pessoa {
 	@Column(name = "perfil", nullable = false)
 	private PerfilEnum perfil;
 
-	//@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "dt_nascimento")
 	private LocalDate dtNascimento;
 
-//	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "dt_cadastro", nullable = false)
 	private LocalDate dtCadastro;
 
