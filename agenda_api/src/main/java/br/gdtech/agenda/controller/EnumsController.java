@@ -17,16 +17,16 @@ public class EnumsController {
     @RequestMapping(value = "/perfis", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<EnumDecription> perfis() throws Exception { return new EnumUtil().toList(PerfilEnum.class); }
     
-    @RequestMapping(value = "/status", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/statusAtendimento", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<EnumDecription> status() throws Exception { return new EnumUtil().toList(StatusAtendimentoEnum.class); }
     
-    @RequestMapping(value = "/tiposContatos", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/tipoContato", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<EnumDecription> tiposContatos() throws Exception { return new EnumUtil().toList(TipoContatoEnum.class); }
     
-    @RequestMapping(value = "/tiposEnderecos", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/tipoEndereco", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<EnumDecription> tiposEnderecos() throws Exception { return new EnumUtil().toList(TipoEnderecoEnum.class); }
     
-    @RequestMapping(value = "/tiposPagamentos", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/tipoPagamento", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<EnumDecription> tiposPagamentos() throws Exception { return new EnumUtil().toList(TipoPagamentoEnum.class); }
 
 }
