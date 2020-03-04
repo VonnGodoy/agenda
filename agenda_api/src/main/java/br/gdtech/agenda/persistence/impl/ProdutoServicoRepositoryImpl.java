@@ -57,48 +57,4 @@ public class ProdutoServicoRepositoryImpl extends RepositorioBase<ProdutoServico
 		return streams;
 	}
 
-	@Override
-	public List<ProdutoServico> findAll() {
-		return null;
-	}
-
-	@Override
-	public Iterable<ProdutoServico> findAllById(Iterable<Integer> iterable) {
-		return null;
-	}
-
-	@Override
-	public long count() {
-		return 0;
-	}
-
-	@Override
-	public void deleteById(Integer integer) {
-
-	}
-
-	@Override
-	public void delete(ProdutoServico produtoServico) {
-
-	}
-
-	@Override
-	public void deleteAll(Iterable<? extends ProdutoServico> iterable) {
-
-	}
-
-	@Override
-	public void deleteAll() {
-
-	}
-
-	@Override
-	public <S extends ProdutoServico> S save(S s) {
-		return null;
-	}
-
-	@Override
-	public <S extends ProdutoServico> Iterable<S> saveAll(Iterable<S> iterable) {
-		return null;
-	}
 }

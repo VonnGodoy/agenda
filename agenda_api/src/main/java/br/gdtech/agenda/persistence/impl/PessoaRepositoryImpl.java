@@ -62,48 +62,4 @@ public class PessoaRepositoryImpl extends RepositorioBase<Pessoa, Integer> imple
 		return streams;
 	}
 
-	@Override
-	public List<Pessoa> findAll() {
-		return null;
-	}
-
-	@Override
-	public Iterable<Pessoa> findAllById(Iterable<Integer> iterable) {
-		return null;
-	}
-
-	@Override
-	public long count() {
-		return 0;
-	}
-
-	@Override
-	public void deleteById(Integer integer) {
-
-	}
-
-	@Override
-	public void delete(Pessoa pessoa) {
-
-	}
-
-	@Override
-	public void deleteAll(Iterable<? extends Pessoa> iterable) {
-
-	}
-
-	@Override
-	public void deleteAll() {
-
-	}
-
-	@Override
-	public <S extends Pessoa> S save(S s) {
-		return null;
-	}
-
-	@Override
-	public <S extends Pessoa> Iterable<S> saveAll(Iterable<S> iterable) {
-		return null;
-	}
 }

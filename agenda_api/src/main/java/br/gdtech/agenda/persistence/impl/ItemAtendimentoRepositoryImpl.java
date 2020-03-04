@@ -61,48 +61,4 @@ public class ItemAtendimentoRepositoryImpl extends RepositorioBase<ItemAtendimen
 		return streams;
 	}
 
-	@Override
-	public List<ItemAtendimento> findAll() {
-		return null;
-	}
-
-	@Override
-	public Iterable<ItemAtendimento> findAllById(Iterable<Integer> iterable) {
-		return null;
-	}
-
-	@Override
-	public long count() {
-		return 0;
-	}
-
-	@Override
-	public void deleteById(Integer integer) {
-
-	}
-
-	@Override
-	public void delete(ItemAtendimento itemAtendimento) {
-
-	}
-
-	@Override
-	public void deleteAll(Iterable<? extends ItemAtendimento> iterable) {
-
-	}
-
-	@Override
-	public void deleteAll() {
-
-	}
-
-	@Override
-	public <S extends ItemAtendimento> S save(S s) {
-		return null;
-	}
-
-	@Override
-	public <S extends ItemAtendimento> Iterable<S> saveAll(Iterable<S> iterable) {
-		return null;
-	}
 }

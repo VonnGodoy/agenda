@@ -70,48 +70,4 @@ public class AtendimentoRepositoryImpl extends RepositorioBase<Atendimento, Inte
 		return streams;
 	}
 
-	@Override
-	public List<Atendimento> findAll() {
-		return null;
-	}
-
-	@Override
-	public Iterable<Atendimento> findAllById(Iterable<Integer> iterable) {
-		return null;
-	}
-
-	@Override
-	public long count() {
-		return 0;
-	}
-
-	@Override
-	public void deleteById(Integer integer) {
-
-	}
-
-	@Override
-	public void delete(Atendimento atendimento) {
-
-	}
-
-	@Override
-	public void deleteAll(Iterable<? extends Atendimento> iterable) {
-
-	}
-
-	@Override
-	public void deleteAll() {
-
-	}
-
-	@Override
-	public <S extends Atendimento> S save(S s) {
-		return null;
-	}
-
-	@Override
-	public <S extends Atendimento> Iterable<S> saveAll(Iterable<S> iterable) {
-		return null;
-	}
 }

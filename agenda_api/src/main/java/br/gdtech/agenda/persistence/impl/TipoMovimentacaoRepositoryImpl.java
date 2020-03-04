@@ -55,49 +55,5 @@ public class TipoMovimentacaoRepositoryImpl extends RepositorioBase<TipoMoviment
 
 		return streams;
 	}
-	@Override
-	public List<TipoMovimentacao> findAll() {
-		return null;
-	}
-
-	@Override
-	public Iterable<TipoMovimentacao> findAllById(Iterable<Integer> iterable) {
-		return null;
-	}
-
-	@Override
-	public long count() {
-		return 0;
-	}
-
-	@Override
-	public void deleteById(Integer integer) {
-
-	}
-
-	@Override
-	public void delete(TipoMovimentacao tipoMovimentacao) {
-
-	}
-
-	@Override
-	public void deleteAll(Iterable<? extends TipoMovimentacao> iterable) {
-
-	}
-
-	@Override
-	public void deleteAll() {
-
-	}
-
-	@Override
-	public <S extends TipoMovimentacao> S save(S s) {
-		return null;
-	}
-
-	@Override
-	public <S extends TipoMovimentacao> Iterable<S> saveAll(Iterable<S> iterable) {
-		return null;
-	}
 
 }
